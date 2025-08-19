@@ -100,7 +100,7 @@ export interface BillingCardProps extends Omit<CardProps, 'title' | 'onSelect'> 
   slots?: BillingCardSlots;
   /** Props per slot (add sx, className, data-testid, etc.) */
   slotProps?: BillingCardSlotProps;
-  /** Fired when CTA is pressed or card is “chosen” (only CTA in v0) */
+  /** Fired when CTA is pressed */
   onSelect?: (planId: string, event: React.MouseEvent) => void;
 }
 
@@ -157,6 +157,7 @@ const BillingCard = React.forwardRef<HTMLDivElement, BillingCardProps>(function 
                 variant="h5"
                 sx={{ color: 'text.secondary', whiteSpace: 'nowrap' }}
               >
+                {' '}
                 / {plan.price.per}
               </Typography>
             </Typography>

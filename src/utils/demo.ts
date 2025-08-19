@@ -76,3 +76,12 @@ export const getPlans = (interval: Interval): BillingPlan[] => [
     ctaLabel: 'Select Plan',
   },
 ];
+
+export const humanInterval = (v: Interval) =>
+  v === 'annually'
+    ? 'Annually'
+    : v === 'twoYears'
+      ? '2 Years'
+      : v === 'threeYears'
+        ? '3 Years'
+        : 'Monthly';
