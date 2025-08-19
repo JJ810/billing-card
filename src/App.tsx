@@ -22,7 +22,7 @@ export default function App() {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ py: { xs: 4, md: 8 } }}>
+    <Container maxWidth="lg" sx={{ py: 2 }}>
       <Stack spacing={3} alignItems="center" sx={{ mb: 3 }}>
         <Typography role="status" aria-live="polite" sx={visuallyHidden}>
           {liveMsg}
