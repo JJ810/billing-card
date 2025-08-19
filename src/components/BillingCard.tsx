@@ -17,7 +17,7 @@ import {
   type CardProps,
   type ListProps,
 } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import * as React from 'react';
 import type { BillingPlan } from '../types';
 import { buildFormatMoney } from '../utils/helpers';
@@ -31,7 +31,6 @@ const BillingCardRoot = styled(Card, {
   flexDirection: 'column',
   borderRadius: 16,
   border: `1px solid ${theme.palette.grey[200]}`,
-  boxShadow: theme.shadows[2],
   maxWidth: '100%',
   [theme.breakpoints.up('md')]: { maxWidth: 365 },
 }));
@@ -128,12 +127,19 @@ const BillingCard = React.forwardRef<HTMLDivElement, BillingCardProps>(function 
     ctaButton: CtaButton = defaultSlots.ctaButton,
   } = slots;
 
+  const theme = useTheme();
+
   const handleClick: React.MouseEventHandler = (e) => {
     onSelect?.(plan.id, e);
   };
 
   return (
-    <Root ref={ref} elevation={highlight ? 6 : 2} sx={sx} {...rest} {...slotProps.root}>
+    <Root
+      ref={ref}
+      sx={{ ...sx, boxShadow: highlight ? theme.shadows[6] : theme.shadows[2] }}
+      {...rest}
+      {...slotProps.root}
+    >
       <Content {...slotProps.content}>
         <Stack spacing={2} alignItems="center">
           {plan.logo && (
