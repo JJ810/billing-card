@@ -1,31 +1,31 @@
+import { Container, Grid, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+import BillingCard from './components/BillingCard';
+import BillingIntervalToggle from './components/BillingIntervalToggle';
+import { getPlans, intervalOptions, type Interval } from './utils/demo';
 
-function App() {
-  const [count, setCount] = useState(0);
+export default function App() {
+  const [interval, setInterval] = useState<Interval>('monthly');
+
+  const plans = getPlans(interval);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
+    <Container maxWidth="lg" sx={{ py: { xs: 4, md: 8 } }}>
+      <Stack spacing={3} alignItems="center" sx={{ mb: 3 }}>
+        <Typography variant="h5" component="h1" sx={{ textAlign: 'center' }}>
+          How often do you want to pay?
+        </Typography>
+
+        <BillingIntervalToggle value={interval} onChange={setInterval} options={intervalOptions} />
+      </Stack>
+
+      <Grid container spacing={{ xs: 2, md: 3 }}>
+        {plans.map((p) => (
+          <Grid size={{ xs: 12, md: 4 }} key={p.id}>
+            <BillingCard plan={p} onSelect={(id) => alert(`Selected: ${id}-${interval}`)} />
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   );
 }
-
-export default App;
