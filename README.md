@@ -257,7 +257,6 @@ npm run build
 ## 🔮 Future Enhancements
 
 - **Internationalization**: Add i18n support for multiple currencies and languages
-- **Animation**: Add smooth transitions for state changes
 - **Theme Variants**: Support for dark mode and custom brand themes
 - **Storybook Integration**: Interactive component documentation
 
